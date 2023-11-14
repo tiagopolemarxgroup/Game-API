@@ -7,10 +7,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tbl_game")
+@Table(name = "tb_game")
 public class Game {
 
 	@Id
@@ -20,23 +21,28 @@ public class Game {
 	@Column(name = "game_year")
 	private Integer year;
 	private String genre;
-	private String plataform;
+	private String platforms;
+	private Double score;
 	private String imgUrl;
+	@Column(columnDefinition = "TEXT")
 	private String shortDescription;
+	@Lob
+	@Column(columnDefinition = "TEXT")
 	private String longDescription;
 
 	public Game() {
 
 	}
 
-	public Game(Long id, String title, Integer year, String genre, String plataform, String imgUrl,
+	public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
 			String shortDescription, String longDescription) {
 
 		this.id = id;
 		this.title = title;
 		this.year = year;
 		this.genre = genre;
-		this.plataform = plataform;
+		this.platforms = platforms;
+		this.score = score;
 		this.imgUrl = imgUrl;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
@@ -74,12 +80,20 @@ public class Game {
 		this.genre = genre;
 	}
 
-	public String getPlataform() {
-		return plataform;
+	public String getPlatforms() {
+		return platforms;
 	}
 
-	public void setPlataform(String plataform) {
-		this.plataform = plataform;
+	public void setPlataforms(String platforms) {
+		this.platforms = platforms;
+	}
+	
+	public Double getScore() {
+		return score;
+	}
+	
+	public void setScore(Double score) {
+		this.score = score;
 	}
 
 	public String getImgUrl() {
@@ -126,7 +140,7 @@ public class Game {
 	@Override
 	public String toString() {
 		return "Game [id=" + id + ", title=" + title + ", year=" + year + ", genre=" + genre + ", plataform="
-				+ plataform + ", imgUrl=" + imgUrl + ", shortDescription=" + shortDescription + ", longDescription="
+				+ platforms + ", imgUrl=" + imgUrl + ", shortDescription=" + shortDescription + ", longDescription="
 				+ longDescription + "]";
 	}
 
